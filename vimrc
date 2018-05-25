@@ -13,3 +13,9 @@ map <c-j> <c-e>
 map <c-k> <c-y>
 map <c-h> <c-u>
 map <c-l> <c-d>
+
+" WSL Clipboard
+let s:clip = '/mnt/c/Windows/System32/clip.exe'
+if executable(s:clip)
+	autocmd TextYankPost * call system('echo '.shellescape(join(v:event.regcontents, '\<cr>')).' | '.s:clip)
+end
