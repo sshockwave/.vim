@@ -15,7 +15,4 @@ map <c-h> <c-u>
 map <c-l> <c-d>
 
 " WSL Clipboard
-let s:clip = '/mnt/c/Windows/System32/clip.exe'
-if executable(s:clip)
-	au TextYankPost * cal system('echo '.shellescape(join(v:event.regcontents, '\<cr>')).' | '.s:clip)
-end
+map <silent> <F12> :call system('cat '.expand('%').' \| /mnt/c/Windows/System32/clip.exe')<cr>:echomsg "File copied on ".strftime('%H:%M:%S')<cr>
