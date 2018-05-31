@@ -37,8 +37,14 @@ nnoremap <c-k> <c-y>
 nnoremap <c-h> <c-u>
 nnoremap <c-l> <c-d>
 
-" WSL Clipboard
-nnoremap <silent> <F12> :call system('cat '.expand('%').' \| /mnt/c/Windows/System32/clip.exe')<cr>:echomsg "File copied on ".strftime('%H:%M:%S')<cr>
+" Clipboard
+if has('clipboard')
+	nnoremap <F12> mpgg"+yG`p
+else
+	nnoremap <silent> <F12>
+		\ :call system('cat '.expand('%').' \| /mnt/c/Windows/System32/clip.exe')<cr>
+		\ :echomsg "File copied on ".strftime('%H:%M:%S')<cr>
+endif
 
 " Line Number
 nnoremap <silent> e :set rnu!<cr>
