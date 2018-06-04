@@ -48,4 +48,3 @@ endif
 
 " Line Number
 nnoremap <silent> e :set rnu!<cr>
-vnoremap <silent> e :set rnu!<cr>
