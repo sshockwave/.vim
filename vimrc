@@ -2,28 +2,28 @@ syntax on
 colo slate
 
 " Options
-set noai "autoindent
-set bs=start,indent,eol "backspace
-set nobk "backup
-set cin "cindent
-set ch=1 "cmdheight
-set cul "cursorline
-set enc=utf-8 "encoding
-set noeb "errorbells
-set nohls "hlsearch
-set nois "incsearch
-set lz "lazyredraw
-set nu "number
-set noru "ruler
-set so=0 "scrolloff
-set sc "showcmd
-set sw=4 "shiftwidth
-set ts=4 "tabstop
-set title "title
-set uc=200 "updatecount
-set ut=1000 "updatetime
-set wig=*.swp "wildignore
-set wmnu "wildmenu
+set noautoindent
+set backspace=start,indent,eol
+set nobackup
+set cindent
+set cmdheight=1
+set cursorline
+set encoding=utf-8
+set noerrorbells
+set nohlsearch
+set noincsearch
+set lazyredraw
+set number
+set noruler
+set scrolloff=0
+set showcmd
+set shiftwidth=4
+set tabstop=4
+set title
+set updatecount=200
+set updatetime=1000
+set wildignore=*.swp
+set wildmenu
 
 " Compilation
 nnoremap <silent> <F7> :w<cr>:!g++ % -o %< -g -Wall -Wextra -std=c++98 -fsanitize=undefined -fsanitize-undefined-trap-on-error<cr>
