@@ -7,7 +7,9 @@ set   backspace=start,indent,eol
 set nobackup
 set   cindent
 set   cmdheight=1
-set   cursorline
+set   complete=.,w,b,u,t
+set nocursorcolumn
+set nocursorline
 set   encoding=utf-8
 set noerrorbells
 set nohlsearch
@@ -18,6 +20,8 @@ set   number
 set noruler
 set   scrolloff=0
 set   showcmd
+set noshowmatch
+set   showmode
 set   shiftwidth=4
 set   tabstop=4
 set   title
@@ -49,3 +53,6 @@ endif
 
 " Line Number
 nnoremap <silent> e :set rnu!<cr>
+
+" Allow saving of files as sudo
+cmap w!! w !sudo tee > /dev/null %
