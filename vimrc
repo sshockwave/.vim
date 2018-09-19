@@ -3,28 +3,28 @@ colo slate
 
 " Options
 set noautoindent
-set backspace=start,indent,eol
+set   backspace=start,indent,eol
 set nobackup
-set cindent
-set cmdheight=1
-set cursorline
-set encoding=utf-8
+set   cindent
+set   cmdheight=1
+set   cursorline
+set   encoding=utf-8
 set noerrorbells
 set nohlsearch
 set noincsearch
-set laststatus=2
-set lazyredraw
-set number
+set   laststatus=2
+set   lazyredraw
+set   number
 set noruler
-set scrolloff=0
-set showcmd
-set shiftwidth=4
-set tabstop=4
-set title
-set updatecount=200
-set updatetime=1000
-set wildignore=*.swp
-set wildmenu
+set   scrolloff=0
+set   showcmd
+set   shiftwidth=4
+set   tabstop=4
+set   title
+set   updatecount=200
+set   updatetime=1000
+set   wildignore=*.swp
+set   wildmenu
 
 " Compilation
 nnoremap <silent> <F7> :w<cr>:!g++ % -o %< -g -Wall -Wextra -std=c++98 -fsanitize=undefined -fsanitize-undefined-trap-on-error<cr>
