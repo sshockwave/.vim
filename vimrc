@@ -12,6 +12,7 @@ set encoding=utf-8
 set noerrorbells
 set nohlsearch
 set noincsearch
+set laststatus=2
 set lazyredraw
 set number
 set noruler
