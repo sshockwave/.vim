@@ -33,8 +33,10 @@ set   wildmenu
 " Compilation
 nnoremap <silent> <F7> :w<cr>:!g++ % -o %< -g -Wall -Wextra -std=c++98 -fsanitize=undefined -fsanitize-undefined-trap-on-error<cr>
 nnoremap <silent> <F3> :w<cr>:!g++ % -o %< -std=c++14<cr>
-inoremap <silent> <F7> <esc><F7>
-inoremap <silent> <F3> <esc><F3>
+imap <F7> <esc><F7>
+imap <F3> <esc><F3>
+nmap <c-i> <F7>
+imap <c-i> <F7>
 
 " Movement
 nnoremap <c-j> <c-e>
@@ -51,8 +53,8 @@ else
 		\ :echomsg "File copied on ".strftime('%H:%M:%S')<cr>
 endif
 
-" Line Number
+" Switch line number flavor
 nnoremap <silent> e :set rnu!<cr>
 
 " Allow saving of files as sudo
-cmap w!! w !sudo tee > /dev/null %
+cnoremap w!! w !sudo tee > /dev/null %
