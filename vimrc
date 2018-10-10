@@ -1,3 +1,4 @@
+" Appearance
 syntax on
 colo slate
 
@@ -35,32 +36,32 @@ function Compile()
 	w
 	if &filetype ==# "cpp"
 		if search("^#define WITH_MODERN_CPP$","n")
-			!g++ % -o %< -std=c++14
+			!g++ %
+				\ -o %<
+				\ -std=c++14
 		el
-			!g++ % -o %< -g -Wall -Wextra -std=c++98 -fsanitize=undefined -fsanitize-undefined-trap-on-error
+			!g++ %
+				\ -o %<
+				\ -g
+				\ -Wall
+				\ -Wextra
+				\ -std=c++98
+				\ -fsanitize=undefined
+				\ -fsanitize-undefined-trap-on-error
 		en
 	en
 endfunction
-nnoremap <silent> \\ :call Compile()<cr>
-imap <silent> \\ <esc>:call Compile()<cr>
 
-" Movement
+" Mappings
 nnoremap <c-j> <c-e>
 nnoremap <c-k> <c-y>
 nnoremap <c-h> <c-u>
 nnoremap <c-l> <c-d>
-
-" Clipboard
-if has('clipboard')
-	nnoremap <F12> mpgg"+yG`p
-else
-	nnoremap <silent> <F12>
-		\ :call system('cat '.expand('%').' \| /mnt/c/Windows/System32/clip.exe')<cr>
-		\ :echomsg "File copied on ".strftime('%H:%M:%S')<cr>
-endif
-
-" Switch line number flavor
+nnoremap <silent> \\ :call Compile()<cr>
+inoremap <silent> \\ <esc>:call Compile()<cr>
 nnoremap <silent> <tab> :set rnu!<cr>
-
-" Allow saving of files as sudo
+nnoremap <silent> <cr> :w<cr>
 cnoremap w!! w !sudo tee > /dev/null %
+nnoremap <silent> <F12>
+\ :call system('cat '.expand('%').' \| /mnt/c/Windows/System32/clip.exe')<cr>
+\ :echomsg "File copied on ".strftime('%H:%M:%S')<cr>
