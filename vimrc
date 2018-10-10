@@ -25,6 +25,8 @@ set noshowmatch
 set   showmode
 set   shiftwidth=4
 set   tabstop=4
+set   timeoutlen=200
+set   ttimeoutlen=-1
 set   title
 set   updatecount=200
 set   updatetime=1000
