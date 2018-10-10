@@ -64,11 +64,15 @@ nnoremap <c-j> <c-e>
 nnoremap <c-k> <c-y>
 nnoremap <c-h> <c-u>
 nnoremap <c-l> <c-d>
+nnoremap [ ,
+nnoremap ] ;
 nnoremap <silent> \\ :call Compile()<cr>
 inoremap <silent> \\ <esc>:call Compile()<cr>
 nnoremap <silent> <tab> :set rnu!<cr>
 nnoremap <silent> <cr> :w<cr>
-cnoremap w!! w !sudo tee > /dev/null %
 nnoremap <silent> <F12>
 \ :call system('cat '.expand('%').' \| /mnt/c/Windows/System32/clip.exe')<cr>
 \ :echomsg "File copied on ".strftime('%H:%M:%S')<cr>
+
+" Abbreviations
+cnoreabbrev w!! w !sudo tee > /dev/null %
