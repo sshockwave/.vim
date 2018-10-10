@@ -6,13 +6,13 @@ colo slate
 set noautoindent
 set   backspace=start,indent,eol
 set nobackup
-set   cindent
 set   cmdheight=1
 set   complete=.,w,b,u,t
 set nocursorcolumn
 set nocursorline
 set   encoding=utf-8
 set noerrorbells
+set noexpandtab
 set nohlsearch
 set noincsearch
 set   laststatus=2
@@ -24,6 +24,8 @@ set   showcmd
 set noshowmatch
 set   showmode
 set   shiftwidth=4
+set nosmartcase
+set   smartindent
 set   tabstop=4
 set   timeoutlen=200
 set   ttimeoutlen=-1
@@ -32,8 +34,11 @@ set   updatecount=200
 set   updatetime=1000
 set   wildignore=*.swp
 set   wildmenu
+if &filetype ==# "cpp"
+	set cindent
+en
 
-" Compilation
+" Functions
 function Compile()
 	w
 	if &filetype ==# "cpp"
