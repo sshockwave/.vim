@@ -31,12 +31,18 @@ set   wildignore=*.swp
 set   wildmenu
 
 " Compilation
-nnoremap <silent> <F7> :w<cr>:!g++ % -o %< -g -Wall -Wextra -std=c++98 -fsanitize=undefined -fsanitize-undefined-trap-on-error<cr>
-nnoremap <silent> <F3> :w<cr>:!g++ % -o %< -std=c++14<cr>
-imap <F7> <esc><F7>
-imap <F3> <esc><F3>
-nmap <c-i> <F7>
-imap <c-i> <F7>
+function Compile()
+	w
+	if &filetype ==# "cpp"
+		if search("^#define WITH_MODERN_CPP$","n")
+			!g++ % -o %< -std=c++14
+		el
+			!g++ % -o %< -g -Wall -Wextra -std=c++98 -fsanitize=undefined -fsanitize-undefined-trap-on-error
+		en
+	en
+endfunction
+nnoremap <silent> \\ :call Compile()<cr>
+imap <silent> \\ <esc>:call Compile()<cr>
 
 " Movement
 nnoremap <c-j> <c-e>
@@ -54,7 +60,7 @@ else
 endif
 
 " Switch line number flavor
-nnoremap <silent> e :set rnu!<cr>
+nnoremap <silent> <tab> :set rnu!<cr>
 
 " Allow saving of files as sudo
 cnoremap w!! w !sudo tee > /dev/null %
