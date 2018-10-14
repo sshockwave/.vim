@@ -1,7 +1,7 @@
 " Appearance
 syntax on
 colo slate
-hi StatusLine term=NONE cterm=NONE ctermfg=Black guifg=Black ctermbg=Yellow guibg=Yellow
+hi StatusLine term=NONE cterm=NONE ctermfg=Black guifg=Black
 hi StatusLineNC term=NONE cterm=NONE ctermfg=LightGray guifg=LightGray ctermbg=DarkGray guifg=DarkGray
 hi clear StatusLineTerm | hi link StatusLineTerm StatusLine
 hi clear StatusLineTermNC | hi link StatusLineTermNC StatusLineNC
@@ -138,7 +138,10 @@ function SetActiveWindow()
 	call DrawMode()
 endfunction
 
+call GetModeStatus()
+
 " Mappings
+let mapleader = ","
 nnoremap [ ,
 nnoremap ] ;
 vnoremap [ ,
