@@ -140,6 +140,8 @@ endfunction
 " Mappings
 nnoremap [ ,
 nnoremap ] ;
+inoremap [ ,
+inoremap ] ;
 nnoremap <silent> \\ :call Compile()<cr>
 inoremap <silent> \\ <esc>:call Compile()<cr>
 nnoremap <silent> <tab> :set rnu!<cr>
