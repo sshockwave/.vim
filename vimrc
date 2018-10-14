@@ -6,6 +6,7 @@ hi StatusLineNC term=NONE cterm=NONE ctermfg=LightGray guifg=LightGray ctermbg=D
 hi clear StatusLineTerm | hi link StatusLineTerm StatusLine
 hi clear StatusLineTermNC | hi link StatusLineTermNC StatusLineNC
 hi User1 term=Bold cterm=Bold ctermfg=White guifg=White ctermbg=Black guibg=Black
+hi User2 term=Underline cterm=Underline ctermfg=White guifg=White ctermbg=Black guibg=Black
 
 " Options
 set noautoindent
@@ -39,7 +40,7 @@ set   smartindent
 set nosmarttab
 set nospell
 set   startofline
-set   statusline=%*\ %{GetModeStatus()}\ %1*\ %f%=%*%m%r%<%y
+set   statusline=%*\ %{GetModeStatus()}\ %1*\ %2*%n%1*\ \%f%=%*%m%r%<%y
 set   tabstop=4
 set   timeoutlen=200
 set   ttimeoutlen=-1
@@ -140,8 +141,8 @@ endfunction
 " Mappings
 nnoremap [ ,
 nnoremap ] ;
-inoremap [ ,
-inoremap ] ;
+vnoremap [ ,
+vnoremap ] ;
 nnoremap <silent> \\ :call Compile()<cr>
 inoremap <silent> \\ <esc>:call Compile()<cr>
 nnoremap <silent> <tab> :set rnu!<cr>
