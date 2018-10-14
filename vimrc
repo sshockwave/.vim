@@ -116,3 +116,4 @@ nnoremap <silent> <F12>
 
 " Abbreviations
 cnoreabbrev w!! w !sudo tee > /dev/null %
+cnoreabbrev Vert vert
