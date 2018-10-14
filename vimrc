@@ -1,14 +1,11 @@
 " Appearance
 syntax on
 colo slate
-hi StatusLine term=NONE cterm=NONE ctermfg=Black guifg=Black ctermbg=LightGray guibg=LightGray
-hi StatusLineNC term=reverse cterm=reverse ctermfg=DarkGray guifg=DarkGray
-hi StatusLineTerm term=NONE cterm=NONE ctermfg=Black guifg=Black ctermbg=LightGray guibg=LightGray
-hi StatusLineTermNC term=reverse cterm=reverse ctermfg=DarkGray guifg=DarkGray ctermbg=Black guifg=Black
-hi User1 ctermfg=Black guifg=Black ctermbg=White guibg=White
-hi User7 ctermfg=Black guifg=Black ctermbg=DarkCyan guibg=DarkCyan
-hi User8 ctermfg=Black guifg=Black ctermbg=DarkGreen guibg=DarkGreen
-hi User9 ctermfg=Black guifg=Black ctermbg=DarkYellow guibg=DarkYellow
+hi StatusLine term=NONE cterm=NONE ctermfg=Black guifg=Black ctermbg=Yellow guibg=Yellow
+hi StatusLineNC term=NONE cterm=NONE ctermfg=LightGray guifg=LightGray ctermbg=DarkGray guifg=DarkGray
+hi clear StatusLineTerm | hi link StatusLineTerm StatusLine
+hi clear StatusLineTermNC | hi link StatusLineTermNC StatusLineNC
+hi User1 term=Bold cterm=Bold ctermfg=White guifg=White ctermbg=Black guibg=Black
 
 " Options
 set noautoindent
@@ -25,7 +22,7 @@ set noexpandtab
 set nohlsearch
 set noincsearch
 set   laststatus=2
-set   lazyredraw
+set nolazyredraw
 set   number
 set   report=1
 set noruler
@@ -42,7 +39,7 @@ set   smartindent
 set nosmarttab
 set nospell
 set   startofline
-set   statusline=%1*\ %{GetMode()}\ %*\ %f%=%7*%m%8*%r%<%9*%y
+set   statusline=%*\ %{GetModeStatus()}\ %1*\ %f%=%*%m%r%<%y
 set   tabstop=4
 set   timeoutlen=200
 set   ttimeoutlen=-1
@@ -75,16 +72,32 @@ function Compile()
 		en
 	en
 endfunction
+let s:activewindow=winnr()
+function DrawMode()
+	if w:mode =~# "Normal"
+		hi StatusLine ctermbg=Yellow guibg=Yellow
+	elseif w:mode =~# "Visual" || w:mode=~#"Select"
+		hi StatusLine ctermbg=DarkMagenta guibg=DarkMagenta
+	elseif w:mode =~# "Insert"
+		hi StatusLine ctermbg=DarkCyan guibg=DarkCyan
+	elseif w:mode =~# "Replace"
+		hi StatusLine ctermbg=Red guibg=Red
+	elseif w:mode =~# "Terminal"
+		hi StatusLine ctermbg=DarkYellow guibg=DarkYellow
+	else
+		hi StatusLine ctermbg=White guibg=White
+	endif
+endfunction
 function GetMode()
 	return {
 		\"n": "Normal",
 		\"no": "Normal",
 		\"v": "Visual",
-		\"V": "Visual > L",
-		\"\<c-v>": "Visual > B",
+		\"V": "Visual",
+		\"\<c-v>": "Visual",
 		\"s": "Select",
-		\"S": "Select > L",
-		\"\<c-s>": "Select > B",
+		\"S": "Select",
+		\"\<c-s>": "Select",
 		\"i": "Insert",
 		\"ic": "Insert",
 		\"ix": "Insert",
@@ -102,6 +115,27 @@ function GetMode()
 		\"t": "Terminal"
 	\}[mode(1)]
 endfunction
+function GetModeStatus()
+	if !exists('w:mode')
+		let w:mode=""
+	endif
+	if winnr() !=# s:activewindow
+		return w:mode
+	endif
+	let curmode=GetMode()
+	if w:mode !=# curmode
+		let w:mode=curmode
+		call DrawMode()
+	endif
+	return w:mode
+endfunction
+function SetActiveWindow()
+	let s:activewindow=winnr()
+	if !exists('w:mode')
+		let w:mode=GetMode()
+	endif
+	call DrawMode()
+endfunction
 
 " Mappings
 nnoremap [ ,
@@ -117,3 +151,7 @@ nnoremap <silent> <F12>
 " Abbreviations
 cnoreabbrev w!! w !sudo tee > /dev/null %
 cnoreabbrev Vert vert
+
+augroup GetActiveWindow
+	au WinEnter * call SetActiveWindow()
+augroup END
