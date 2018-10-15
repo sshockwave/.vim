@@ -40,18 +40,16 @@ set   smartindent
 set nosmarttab
 set nospell
 set   startofline
-set   statusline=%*\ %{GetModeStatus()}\ %1*\ %2*%n%1*\ \%f%=%*%m%r%<%y
+set   statusline=%*\ %{GetModeStatus()}\ %1*\ %f%<\ %2*%m%r%1*%=%*%y
 set   tabstop=4
 set   timeoutlen=200
 set   ttimeoutlen=-1
 set   title
 set   updatecount=200
 set   updatetime=1000
+set   viminfo=
 set   wildignore=*.swp
 set   wildmenu
-if &filetype ==# "cpp"
-	set cindent
-en
 
 " Functions
 function Compile()
@@ -160,4 +158,8 @@ cnoreabbrev Vert vert
 
 augroup GetActiveWindow
 	au WinEnter * call SetActiveWindow()
+augroup END
+
+augroup SetIndent
+	au BufRead * if &filetype==#"cpp" | setlocal cin | endif
 augroup END
