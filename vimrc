@@ -34,7 +34,6 @@ set   showcmd
 set noshowmatch
 set noshowmode
 set   showtabline=1
-set   signcolumn=auto
 set nosmartcase
 set   smartindent
 set nosmarttab
