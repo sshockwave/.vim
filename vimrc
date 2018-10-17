@@ -100,7 +100,7 @@ function DrawMode()
 	elseif w:mode =~# "Replace"
 		hi StatusLine ctermbg=Red guibg=Red
 	elseif w:mode =~# "Terminal"
-		hi StatusLine ctermbg=DarkYellow guibg=DarkYellow
+		hi StatusLine ctermbg=Brown guibg=Brown
 	else
 		hi StatusLine ctermbg=White guibg=White
 	endif
