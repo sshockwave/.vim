@@ -96,9 +96,11 @@ nnoremap <silent> \\ :call Compile()<cr>
 inoremap <silent> \\ <esc>:call Compile()<cr>
 nnoremap <silent> <tab> :set rnu!<cr>
 nnoremap <silent> <cr> :w<cr>
-nnoremap <silent> <F12>
-\ :call system("cat ".expand("%")." \| /mnt/c/Windows/System32/clip.exe")<cr>
-\ :echomsg "File copied on ".strftime("%H:%M:%S")<cr>
+if g:hasWSL
+	nnoremap <silent> <F12>
+	\ :call system("cat ".expand("%")." \| /mnt/c/Windows/System32/clip.exe")<cr>
+	\ :echomsg "File copied on ".strftime("%H:%M:%S")<cr>
+endif
 
 " Abbreviations
 cnoreabbrev w!! w !sudo tee > /dev/null %
