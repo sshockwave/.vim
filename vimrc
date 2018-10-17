@@ -162,3 +162,10 @@ augroup END
 augroup SetIndent
 	au BufRead * if &filetype==#"cpp" | setlocal cin | endif
 augroup END
+
+if has("windows")
+	set shell=wsl
+	set shellpipe=|
+	set shellredir=>
+	set shellcmdflag=
+endif
