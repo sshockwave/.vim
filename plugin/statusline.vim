@@ -2,7 +2,7 @@
 " Maintainer:	sshockwave <i_sukai@live.com>
 
 let s:activewindow=winnr()
-set   statusline=%*\ %{GetModeStatus()}\ %1*\ %f%<\ %2*%m%r%1*%=%*[%{&ff}]%y
+set statusline=%*\ %{GetLocalMode()}\ %1*\ %f%<\ %2*%m%r%1*%=%*[%{&ff}]%y
 
 hi StatusLine term=NONE cterm=NONE ctermfg=Black guifg=Black
 hi StatusLineNC term=NONE cterm=NONE ctermfg=LightGray ctermbg=DarkGray guifg=LightGray guibg=DarkGray
@@ -11,23 +11,23 @@ hi clear StatusLineTermNC | hi link StatusLineTermNC StatusLineNC
 hi User1 term=Bold cterm=Bold ctermfg=White guifg=White ctermbg=Black guibg=Black
 hi User2 term=Underline cterm=Underline ctermfg=White guifg=White ctermbg=Black guibg=Black
 
-function DrawMode()
-	if w:mode =~# "Normal"
-		hi StatusLine ctermbg=Yellow guibg=Yellow
-	elseif w:mode =~# "Visual" || w:mode=~#"Select"
-		hi StatusLine ctermbg=DarkMagenta guibg=DarkMagenta
-	elseif w:mode =~# "Insert"
-		hi StatusLine ctermbg=DarkCyan guibg=DarkCyan
-	elseif w:mode =~# "Replace"
-		hi StatusLine ctermbg=Red guibg=Red
-	elseif w:mode =~# "Terminal"
-		hi StatusLine ctermbg=Brown guibg=Brown
-	else
-		hi StatusLine ctermbg=White guibg=White
-	endif
+function ApplyModeColor()
+	let color={
+		\"Normal": "Yellow",
+		\"Visual": "DarkMagenta",
+		\"Select": "DarkMagenta",
+		\"Insert": "DarkCyan",
+		\"Replace": "Red",
+		\"Terminal": "Brown",
+		\"Command": "White",
+		\"Prompt": "Green",
+		\"Shell": "DarkBlue",
+	\}[s:activemode]
+	exe "hi StatusLine ctermbg=".color." guibg=".color
 endfunction
-function GetMode()
-	return {
+
+function GetGlobalMode()
+	let curmode={
 		\"n": "Normal",
 		\"no": "Normal",
 		\"v": "Visual",
@@ -47,36 +47,27 @@ function GetMode()
 		\"cv": "Command",
 		\"ce": "Command",
 		\"r": "Prompt",
-		\"rm": "More",
-		\"r?": "Confirm",
+		\"rm": "Prompt",
+		\"r?": "Prompt",
 		\"!": "Shell",
 		\"t": "Terminal"
 	\}[mode(1)]
+	if !exists("s:activemode") || s:activemode !=# curmode
+		let s:activemode=curmode
+		call ApplyModeColor()
+	endif
+	return curmode
 endfunction
-function GetModeStatus()
-	if !exists('w:mode')
-		let w:mode=""
-	endif
-	if winnr() !=# s:activewindow
-		return w:mode
-	endif
-	let curmode=GetMode()
-	if w:mode !=# curmode
-		let w:mode=curmode
-		call DrawMode()
+
+function GetLocalMode()
+	if !exists('w:mode') || winnr() ==# s:activewindow
+		let w:mode=GetGlobalMode()
 	endif
 	return w:mode
 endfunction
-function SetActiveWindow()
-	let s:activewindow=winnr()
-	if !exists('w:mode')
-		let w:mode=GetMode()
-	endif
-	call DrawMode()
-endfunction
-
-call GetModeStatus()
 
 augroup GetActiveWindow
-	au WinEnter * call SetActiveWindow()
+	au WinEnter * let s:activewindow=winnr() | call GetGlobalMode()
 augroup END
+
+call GetGlobalMode()
