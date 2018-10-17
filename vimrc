@@ -158,10 +158,8 @@ call GetModeStatus()
 
 " Mappings
 let mapleader = ","
-nnoremap [ ,
-nnoremap ] ;
-vnoremap [ ,
-vnoremap ] ;
+noremap [ ,
+noremap ] ;
 nnoremap <silent> \\ :call Compile()<cr>
 inoremap <silent> \\ <esc>:call Compile()<cr>
 nnoremap <silent> <tab> :set rnu!<cr>
