@@ -1,4 +1,6 @@
 " Global States
+let did_install_default_menus = 1
+let did_install_syntax_menu = 1
 let s:activewindow=winnr()
 let g:hasWSL=!empty(glob("c:\\Windows\\System32\\wsl.exe"))
 

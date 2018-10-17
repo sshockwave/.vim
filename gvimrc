@@ -1,7 +1,6 @@
 " Options
 set   guifont=Consolas:h12
-set   guioptions=!cig
-
+set   guioptions=!cimg
 if has('win32') || has('win64')
 	if (v:version == 704 && has("patch393")) || v:version > 704
 		set renderoptions=type:directx
@@ -13,3 +12,5 @@ if has('win32') || has('win64')
 			\,taamode:1
 	endif
 endif
+
+" Menu
