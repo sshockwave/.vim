@@ -1,3 +1,7 @@
+" Global States
+let s:activewindow=winnr()
+let g:hasWSL=!empty(glob("c:\\Windows\\System32\\wsl.exe"))
+
 " Appearance
 syntax on
 colo slate
@@ -49,28 +53,41 @@ set   updatetime=1000
 set   viminfo=
 set   wildignore=*.swp
 set   wildmenu
+if has("windows")
+	if g:hasWSL
+		set shell=wsl
+		set shellpipe=|
+		set shellredir=>
+		set shellcmdflag=
+	endif
+endif
 
 " Functions
 function Compile()
 	w
+	let cmd=""
 	if &filetype ==# "cpp"
+		let cmd.="!g++"
+		if g:hasWSL
+			let cmd.=" `wslpath '%'`"
+			let cmd.=" -o `wslpath '%<'`"
+		else
+			let cmd.=" %"
+			let cmd.=" -o %<"
+		endif
 		if search("^#define WITH_MODERN_CPP$","n")
-			!g++ %
-				\ -o %<
-				\ -std=c++14
+			let cmd.=" -std=c++14"
 		el
-			!g++ %
-				\ -o %<
-				\ -g
-				\ -Wall
-				\ -Wextra
-				\ -std=c++98
-				\ -fsanitize=undefined
-				\ -fsanitize-undefined-trap-on-error
+			let cmd.=" -g"
+			let cmd.=" -Wall"
+			let cmd.=" -Wextra"
+			let cmd.=" -std=c++98"
+			let cmd.=" -fsanitize=undefined"
+			let cmd.=" -fsanitize-undefined-trap-on-error"
 		en
 	en
+	execute cmd
 endfunction
-let s:activewindow=winnr()
 function DrawMode()
 	if w:mode =~# "Normal"
 		hi StatusLine ctermbg=Yellow guibg=Yellow
@@ -155,17 +172,10 @@ nnoremap <silent> <F12>
 cnoreabbrev w!! w !sudo tee > /dev/null %
 cnoreabbrev Vert vert
 
+" Auto Commands
 augroup GetActiveWindow
 	au WinEnter * call SetActiveWindow()
 augroup END
-
 augroup SetIndent
 	au BufRead * if &filetype==#"cpp" | setlocal cin | endif
 augroup END
-
-if has("windows")
-	set shell=wsl
-	set shellpipe=|
-	set shellredir=>
-	set shellcmdflag=
-endif
