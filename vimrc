@@ -45,7 +45,7 @@ set   smartindent
 set nosmarttab
 set nospell
 set   startofline
-set   statusline=%*\ %{GetModeStatus()}\ %1*\ %f%<\ %2*%m%r%1*%=%*%y
+set   statusline=%*\ %{GetModeStatus()}\ %1*\ %f%<\ %2*%m%r%1*%=%*[%{&ff}]%y
 set   tabstop=4
 set   timeoutlen=200
 set   ttimeoutlen=-1
