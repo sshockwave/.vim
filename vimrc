@@ -24,6 +24,8 @@ set nocursorline
 set   encoding=utf-8
 set noerrorbells
 set noexpandtab
+set   fileformat=unix
+set   fileformats=unix,dos,mac
 set nohlsearch
 set noincsearch
 set   laststatus=2
