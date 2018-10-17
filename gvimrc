@@ -1,5 +1,5 @@
 " Options
-set   guifont=Consolas:h12
+set   guifont=Consolas:h13
 set   guioptions=!cimg
 if has('win32') || has('win64')
 	if (v:version == 704 && has("patch393")) || v:version > 704
