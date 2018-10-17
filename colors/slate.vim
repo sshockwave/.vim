@@ -10,7 +10,7 @@ if version > 580
 	endif
 endif
 let colors_name = "slate"
-hi Normal guifg=White guibg=grey15
+hi Normal guifg=white guibg=black
 hi Cursor guifg=slategrey guibg=khaki
 hi VertSplit cterm=reverse gui=none guifg=grey40 guibg=#c2bfa5
 hi Folded ctermfg=grey ctermbg=darkgrey guifg=grey40 guibg=black
@@ -18,7 +18,7 @@ hi FoldColumn ctermfg=darkred ctermbg=grey guibg=black guifg=grey20
 hi IncSearch cterm=none ctermfg=yellow ctermbg=green guifg=green guibg=black
 hi ModeMsg cterm=none ctermfg=brown guifg=goldenrod
 hi MoreMsg ctermfg=darkgreen guifg=SeaGreen
-hi NonText cterm=bold ctermfg=blue guifg=RoyalBlue guibg=grey15
+hi NonText cterm=bold gui=bold ctermfg=lightblue guifg=lightblue
 hi Question ctermfg=green guifg=springgreen
 hi Search cterm=none ctermfg=grey ctermbg=blue guifg=wheat guibg=peru
 hi SpecialKey ctermfg=darkgreen guifg=yellowgreen
@@ -40,7 +40,7 @@ hi Define ctermfg=yellow gui=bold guifg=gold
 hi Type ctermfg=darkgreen guifg=CornflowerBlue
 hi Function ctermfg=brown guifg=navajowhite
 hi Structure ctermfg=green guifg=green
-hi LineNr ctermfg=darkcyan guifg=grey50
+hi LineNr ctermfg=darkyellow guifg=darkyellow
 hi Ignore cterm=bold ctermfg=grey guifg=grey40
 hi Todo guifg=orangered guibg=yellow2
 hi Directory ctermfg=darkcyan
