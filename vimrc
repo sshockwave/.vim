@@ -8,7 +8,7 @@ let g:hasWSL=!empty(glob("c:\\Windows\\System32\\wsl.exe"))
 syntax on
 colo slate
 hi StatusLine term=NONE cterm=NONE ctermfg=Black guifg=Black
-hi StatusLineNC term=NONE cterm=NONE ctermfg=LightGray guifg=LightGray ctermbg=DarkGray guifg=DarkGray
+hi StatusLineNC term=NONE cterm=NONE ctermfg=LightGray ctermbg=DarkGray guifg=LightGray guibg=DarkGray
 hi clear StatusLineTerm | hi link StatusLineTerm StatusLine
 hi clear StatusLineTermNC | hi link StatusLineTermNC StatusLineNC
 hi User1 term=Bold cterm=Bold ctermfg=White guifg=White ctermbg=Black guibg=Black
