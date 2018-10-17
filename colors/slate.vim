@@ -34,7 +34,7 @@ hi Constant guifg=#ffa0a0 ctermfg=brown
 hi Special guifg=darkkhaki ctermfg=brown
 hi Identifier guifg=salmon ctermfg=red
 hi Include guifg=red ctermfg=red
-hi PreProc guifg=red guibg=white ctermfg=red
+hi PreProc guifg=red ctermfg=red
 hi Operator guifg=Red ctermfg=Red
 hi Define guifg=gold gui=bold ctermfg=yellow
 hi Type guifg=CornflowerBlue ctermfg=2
