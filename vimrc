@@ -1,7 +1,7 @@
 " Global States
 let did_install_default_menus = 1
 let did_install_syntax_menu = 1
-let g:hasWSL=!empty(glob("c:\\Windows\\System32\\wsl.exe"))
+let g:hasWSL=!empty(glob("c:\\Windows\\System32\\bash.exe"))
 
 " Appearance
 syntax on
@@ -56,10 +56,12 @@ set   wildignore=*.swp
 set   wildmenu
 if has("windows")
 	if g:hasWSL
-		set shell=wsl
-		set shellpipe=|
-		set shellredir=>
-		set shellcmdflag=
+		set shell=bash
+		set shellpipe=2>&1\|\ tee
+		set shellredir=>%s\ 2>&1
+		set shellquote=
+		set shellxquote=\"
+		set shellcmdflag=-c
 	endif
 endif
 
