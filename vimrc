@@ -5,7 +5,7 @@ let g:hasWSL=!empty(glob("c:\\Windows\\System32\\bash.exe"))
 
 " Appearance
 syntax on
-colo slate
+colorscheme slate
 
 " Filtype
 filetype on
@@ -74,10 +74,10 @@ function Compile()
 		if g:hasWSL
 			let cmd.=" `wslpath '%'`"
 			let cmd.=" -o `wslpath '%<'`"
-		else
+		el
 			let cmd.=" %"
 			let cmd.=" -o %<"
-		endif
+		en
 		if search("^#define WITH_MODERN_CPP$","n")
 			let cmd.=" -std=c++14"
 		el
