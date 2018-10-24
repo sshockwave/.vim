@@ -1,7 +1,7 @@
-" Global States
+" global States
 let did_install_default_menus = 1
 let did_install_syntax_menu = 1
-let g:hasWSL=!empty(glob("c:\\Windows\\System32\\bash.exe"))
+let g:hasWSL=has("windows")&&!empty(glob("c:\\Windows\\System32\\bash.exe"))
 
 " Appearance
 syntax on
@@ -93,13 +93,13 @@ function Compile()
 endfunction
 
 " Mappings
-let mapleader = ","
+let mapleader = "\\"
 noremap [ ,
 noremap ] ;
-nnoremap <silent> \\ :call Compile()<cr>
-inoremap <silent> \\ <esc>:call Compile()<cr>
+nnoremap <silent> <leader><leader> :call Compile()<cr>
+inoremap <silent> <leader><leader> <esc>:call Compile()<cr>
 nnoremap <silent> <tab> :set rnu!<cr>
-nnoremap <silent> <cr> :w<cr>
+nnoremap <silent> <space> :w<cr>
 if g:hasWSL
 	nnoremap <silent> <F12>
 	\ :call system("cat ".expand("%")." \| /mnt/c/Windows/System32/clip.exe")<cr>
