@@ -54,6 +54,7 @@ set   updatetime=1000
 set   viminfo=
 set   wildignore=*.swp
 set   wildmenu
+set   wrap
 if has("windows")
 	if g:hasWSL
 		set shell=bash
