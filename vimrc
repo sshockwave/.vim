@@ -35,7 +35,7 @@ set   report=1
 set noruler
 set   scrolloff=0
 set   selection=inclusive
-set   shiftwidth=4
+set   shiftwidth=0
 set   showcmd
 set noshowmatch
 set noshowmode
