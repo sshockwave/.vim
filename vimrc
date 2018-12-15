@@ -66,47 +66,7 @@ if has("windows")
 	endif
 endif
 
-" Functions
-function Compile()
-	w
-	let cmd=""
-	if &filetype ==# "cpp"
-		let cmd.="!g++"
-		if g:hasWSL
-			let cmd.=" `wslpath '%'`"
-			let cmd.=" -o `wslpath '%<'`"
-		el
-			let cmd.=" %"
-			let cmd.=" -o %<"
-		en
-		if search("^#define WITH_MODERN_CPP$","n")
-			let cmd.=" -std=c++14"
-		el
-			let cmd.=" -g"
-			let cmd.=" -Wall"
-			let cmd.=" -Wextra"
-			let cmd.=" -std=c++98"
-			let cmd.=" -fsanitize=undefined"
-			let cmd.=" -fsanitize-undefined-trap-on-error"
-		en
-	en
-	execute cmd
-endfunction
-
-" Mappings
-let mapleader = "\\"
-noremap [ ,
-noremap ] ;
-nnoremap <silent> <leader><leader> :call Compile()<cr>
-inoremap <silent> <leader><leader> <esc>:call Compile()<cr>
-nnoremap <silent> <tab> :set rnu!<cr>
-nnoremap <silent> <space> :w<cr>
-if g:hasWSL
-	nnoremap <silent> <F12>
-	\ :call system("cat ".expand("%")." \| /mnt/c/Windows/System32/clip.exe")<cr>
-	\ :echomsg "File copied on ".strftime("%H:%M:%S")<cr>
-endif
-
-" Abbreviations
-cnoreabbrev w!! w !sudo tee > /dev/null %
-cnoreabbrev Vert vert
+" Load scripts
+runtime abbreviations.vim
+runtime functions.vim
+runtime mappings.vim
