@@ -24,7 +24,7 @@ set   shiftwidth=0
 set   showcmd
 set noshowmatch
 set noshowmode
-set   showtabline=1
+set   showtabline=2
 set nosmartcase
 set   smartindent
 set nosmarttab
