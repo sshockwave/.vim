@@ -2,14 +2,14 @@
 " Maintainer:	sshockwave <i_sukai@live.com>
 
 let s:activewindow=winnr()
-set statusline=%*\ %{GetLocalMode()}\ %1*\ %f%<\ %2*%m%r%1*%=%*[%{&ff}]%y
+set statusline=%*\ %{GetLocalMode()}\ %1*\ %f\ %2*%m%r%1*%<%=%*[%{&ff}]%y
 
 hi clear StatusLine | hi StatusLine ctermfg=Black guifg=Black
 hi clear StatusLineNC | hi StatusLineNC ctermfg=LightGray ctermbg=DarkGray guifg=LightGray guibg=DarkGray
 hi clear StatusLineTerm | hi link StatusLineTerm StatusLine
 hi clear StatusLineTermNC | hi link StatusLineTermNC StatusLineNC
 hi clear User1 | hi User1 term=Bold cterm=Bold ctermfg=White guifg=White ctermbg=Black guibg=Black
-hi clear User2 | hi User2 term=Underline cterm=Underline ctermfg=White guifg=White ctermbg=Black guibg=Black
+hi clear User2 | hi User2 term=Underline cterm=Underline gui=Underline ctermfg=White guifg=White ctermbg=Black guibg=Black
 
 function ApplyModeColor()
 	let color={
