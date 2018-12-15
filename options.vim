@@ -16,7 +16,7 @@ set noincsearch
 set   laststatus=2
 set nolazyredraw
 set   list
-set   listchars=tab:›\ ,trail:·
+set   listchars=tab:»\ ,trail:·
 set   number
 set   report=1
 set noruler
