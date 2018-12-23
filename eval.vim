@@ -3,7 +3,7 @@ function Compile()
 	let cmd=""
 	if &filetype ==# "cpp"
 		let cmd.="!g++"
-		if g:hasWSL
+		if g:useWSL
 			let cmd.=" `wslpath '%'`"
 			let cmd.=" -o `wslpath '%<'`"
 		el
