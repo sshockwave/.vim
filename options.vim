@@ -26,14 +26,14 @@ set   shiftwidth=0
 set   showcmd
 set noshowmatch
 set noshowmode
-set   showtabline=2
+set   showtabline=1
 set nosmartcase
 set   smartindent
 set nosmarttab
 set nospell
 set   startofline
 set   tabstop=4
-set   timeoutlen=200
+set   timeoutlen=1000
 set   ttimeoutlen=-1
 set   title
 set   updatecount=200
