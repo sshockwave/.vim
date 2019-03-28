@@ -10,16 +10,12 @@ function Compile()
 			let cmd.=" %"
 			let cmd.=" -o %<"
 		en
-		if search("^#define WITH_MODERN_CPP$","n")
-			let cmd.=" -std=c++14"
-		el
-			let cmd.=" -g"
-			let cmd.=" -Wall"
-			let cmd.=" -Wextra"
-			let cmd.=" -std=c++98"
-			let cmd.=" -fsanitize=undefined"
-			let cmd.=" -fsanitize-undefined-trap-on-error"
-		en
+		let cmd.=" -g"
+		let cmd.=" -Wall"
+		let cmd.=" -Wextra"
+		let cmd.=" -std=c++11"
+		let cmd.=" -fsanitize=undefined"
+		let cmd.=" -fsanitize-undefined-trap-on-error"
 	en
 	execute cmd
 endfunction
