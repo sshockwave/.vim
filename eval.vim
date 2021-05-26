@@ -19,3 +19,14 @@ function Compile()
 	en
 	execute cmd
 endfunction
+
+function ExtendSelection()
+	" [bufnum, lnum, col, off]
+	let l_pos=getpos("'<")
+	let r_pos=getpos("'>")
+	if l_pos[1]==r_pos[1]&&!(l_pos[2]<=1&&r_pos[2]>=strlen(getline(l_pos[1])))
+		normal! V
+	else
+		normal! ggVG
+	endif
+endfunction
