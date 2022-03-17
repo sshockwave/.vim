@@ -29,7 +29,6 @@ endfunction
 function GetGlobalMode()
 	let curmode={
 		\"n": "Normal",
-		\"no": "Normal",
 		\"v": "Visual",
 		\"V": "Visual",
 		\"\<c-v>": "Visual",
@@ -37,21 +36,14 @@ function GetGlobalMode()
 		\"S": "Select",
 		\"\<c-s>": "Select",
 		\"i": "Insert",
-		\"ic": "Insert",
-		\"ix": "Insert",
 		\"R": "Replace",
-		\"Rc": "Replace",
-		\"Rv": "Replace",
-		\"Rx": "Replace",
 		\"c": "Command",
 		\"cv": "Command",
 		\"ce": "Command",
 		\"r": "Prompt",
-		\"rm": "Prompt",
-		\"r?": "Prompt",
 		\"!": "Shell",
 		\"t": "Terminal"
-	\}[mode(1)]
+	\}[mode()]
 	if !exists("s:activemode") || s:activemode !=# curmode
 		let s:activemode=curmode
 		call ApplyModeColor()
